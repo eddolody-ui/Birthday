@@ -24,7 +24,7 @@ function SurpriseBox({ onBoxOpened }: SurpriseBoxProps) {
     <div className="surprise-box-container">
       <p className="surprise-subtitle">Happy Birthday!</p>
       {/* The 3D Gift Box */}
-      <div className={`gift-box ${isOpen ? 'box-opened' : ''}`}>
+      <div className={`gift-box ${isOpen ? 'box-opened' : ''} ${isAnimating ? 'opening' : ''}`}>
         <div className="gift-box-lid">
           <div className="lid-top">
             <div className="lid-ribbon-h" />
@@ -35,6 +35,25 @@ function SurpriseBox({ onBoxOpened }: SurpriseBoxProps) {
           <div className="box-ribbon-v" />
           <div className="box-ribbon-h" />
         </div>
+        {/* Confetti burst while opening */}
+        {isAnimating && (
+          <div className="box-confetti" aria-hidden>
+            {Array.from({ length: 14 }).map((_, i) => (
+              <div
+                key={i}
+                className="confetti-piece box-confetti-piece"
+                style={{
+                  left: `${10 + i * 6}%`,
+                  background: `hsl(${(i * 35) % 360} 80% 60%)`,
+                  animationDuration: `${900 + (i % 5) * 150}ms`,
+                  animationDelay: `${(i % 6) * 60}ms`,
+                  // horizontal burst distance
+                  ['--dx' as any]: `${(i - 7) * 18}px`,
+                }}
+              />
+            ))}
+          </div>
+        )}
       </div>
 
       {/* Open Button */}
