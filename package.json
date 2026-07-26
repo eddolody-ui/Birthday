@@ -34,5 +34,8 @@
     "#components/*": "./src/components/*.tsx",
     "#lib/*": "./src/lib/*.ts",
     "#hooks/*": "./src/hooks/*.ts"
+  },
+  "engines": {
+    "node": "20.x"
   }
 }
