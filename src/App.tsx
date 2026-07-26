@@ -3,13 +3,12 @@ import Countdown from './Countdown';
 import HeartParticles from './HeartParticles';
 import SurpriseBox from './SurpriseBox';
 import BirthdayCake from './BirthdayCake';
-import RevealedPage from './RevealedPage';
 import LoadingAnimation from './LoadingAnimation';
 import DecoratedTextPage from './DecoratedTextPage';
 import CelebrationPage from './CelebrationPage';
 
 function App() {
-  const [page, setPage] = useState<'countdown' | 'loading' | 'decorated-text' | 'surprise' | 'revealed' | 'celebration'>('countdown');
+  const [page, setPage] = useState<'countdown' | 'loading' | 'surprise' | 'revealed' | 'decorated-text' | 'celebration'>('countdown');
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   const handleEnter = () => {
@@ -23,7 +22,7 @@ function App() {
   const handleLoadingComplete = () => {
     setIsFadingOut(true);
     setTimeout(() => {
-      setPage('decorated-text');
+      setPage('surprise');
       setIsFadingOut(false);
     }, 600);
   };
@@ -31,7 +30,7 @@ function App() {
   const handleTextComplete = () => {
     setIsFadingOut(true);
     setTimeout(() => {
-      setPage('surprise');
+      setPage('celebration');
       setIsFadingOut(false);
     }, 600);
   };
@@ -47,7 +46,7 @@ function App() {
   const handleCandleBlown = () => {
     setIsFadingOut(true);
     setTimeout(() => {
-      setPage('celebration');
+      setPage('decorated-text');
       setIsFadingOut(false);
     }, 800);
   };
@@ -60,9 +59,6 @@ function App() {
       {page === 'loading' && (
         <LoadingAnimation onComplete={handleLoadingComplete} />
       )}
-      {page === 'decorated-text' && (
-        <DecoratedTextPage onContinue={handleTextComplete} />
-      )}
       {page === 'surprise' && (
         <div className="surprise-page">
           <HeartParticles count={50} />
@@ -74,6 +70,9 @@ function App() {
           <HeartParticles count={40} />
           <BirthdayCake onCandleBlown={handleCandleBlown} />
         </div>
+      )}
+      {page === 'decorated-text' && (
+        <DecoratedTextPage onContinue={handleTextComplete} />
       )}
       {page === 'celebration' && (
         <CelebrationPage />

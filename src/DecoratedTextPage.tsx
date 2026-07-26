@@ -6,17 +6,13 @@ interface DecoratedTextPageProps {
 }
 
 const birthdayMessage = [
-  { text: 'Happy Birthday', className: 'deco-title' },
-  { text: 'To Someone', className: 'deco-subtitle' },
-  { text: 'Truly Special', className: 'deco-subtitle' },
+  { text: 'ပျော်ရှင်စရာမွေးနေ့လေးပါ', className: 'deco-title' },
+  { text: ' ကိုကို့ ကလေးလေး', className: 'deco-title' },
+  { text: 'From', className: 'deco-subtitle' },
+  { text: 'ကိုကို', className: 'deco-subtitle' },
   { text: '', className: 'deco-spacer' },
-  { text: 'May your day be filled with as much joy', className: 'deco-line' },
-  { text: 'as you bring to everyone around you.', className: 'deco-line' },
-  { text: 'You deserve all the love, laughter,', className: 'deco-line' },
-  { text: 'and happiness in the world.', className: 'deco-line' },
-  { text: '', className: 'deco-spacer' },
-  { text: 'Here\'s to you,', className: 'deco-line deco-signoff' },
-  { text: 'and to many more beautiful years ahead!', className: 'deco-line deco-signoff' },
+  { text: 'ကလေးလေးကို တွေ့ခွင့်ရတာက ကိုကို့ဘ၀အတွက် အကောင်းဆုံးလက်ဆောင်တစ်ခုပါနော်။ ယနေ့မွေးနေ့ကစပြီး ကလေးလေးရဲ့ဘဝမှာ ပျော်ရွှင်ခြင်း၊ ကျန်းမာခြင်း၊ အောင်မြင်ခြင်းတွေနဲ့ အမြဲပြည့်စုံပါစေ။ ကလေးလေးလိုချင်တဲ့အိပ်မက်တိုင်း အကောင် အထည်ဖော်နိုင်ပြီး ကံကောင်းခြင်းတွေနဲ့ အမြဲပြည့်စုံပါစေ။', className: 'deco-line' },
+  { text: 'ကိုကို့ ကိုလဲအများကြီးပိုချစ်ပေးနိုင်ပါစေ။', className: 'deco-line' },
 ];
 
 function DecoratedTextPage({ onContinue }: DecoratedTextPageProps) {
@@ -84,6 +80,28 @@ function DecoratedTextPage({ onContinue }: DecoratedTextPageProps) {
         <span className="deco-float-item di-6">💕</span>
         <span className="deco-float-item di-7">🌻</span>
         <span className="deco-float-item di-8">🎵</span>
+      </div>
+
+      {/* Photo glass containers */}
+      <div className="deco-photo-gallery" aria-hidden>
+        <div className="deco-photo-frame top-left">
+          <div className="deco-photo-surface">📸 Photo</div>
+        </div>
+        <div className="deco-photo-frame top-right">
+          <div className="deco-photo-surface">📸 Photo</div>
+        </div>
+        <div className="deco-photo-frame mid-left">
+          <div className="deco-photo-surface">📸 Photo</div>
+        </div>
+        <div className="deco-photo-frame mid-right">
+          <div className="deco-photo-surface">📸 Photo</div>
+        </div>
+        <div className="deco-photo-frame bottom-left">
+          <div className="deco-photo-surface">📸 Photo</div>
+        </div>
+        <div className="deco-photo-frame bottom-right">
+          <div className="deco-photo-surface">📸 Photo</div>
+        </div>
       </div>
 
       {/* Center glass card */}

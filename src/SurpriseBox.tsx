@@ -22,7 +22,7 @@ function SurpriseBox({ onBoxOpened }: SurpriseBoxProps) {
 
   return (
     <div className="surprise-box-container">
-      <p className="surprise-subtitle">Happy Birthday!</p>
+      <p className="surprise-subtitle">Happy Birthday ပါ ကိုကို့ချစ်ဆုံးလေး။</p>
       {/* The 3D Gift Box */}
       <div className={`gift-box ${isOpen ? 'box-opened' : ''} ${isAnimating ? 'opening' : ''}`}>
         <div className="gift-box-lid">
@@ -62,7 +62,7 @@ function SurpriseBox({ onBoxOpened }: SurpriseBoxProps) {
         onClick={handleOpen}
         disabled={isOpen}
       >
-        {isOpen ? 'Opened! 🎉' : 'Open Box'}
+        {isOpen ? 'ဖွင့်ပြီးပါပြီ။' : 'ဖွင့်ပါ။'}
       </button>
     </div>
   );

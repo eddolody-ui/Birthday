@@ -1,4 +1,23 @@
+import { useRef, useState } from "react";
+
 function CelebrationPage() {
+  const [showMedia, setShowMedia] = useState(false);
+  const [playClicked, setPlayClicked] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+
+  const handlePlayButton = () => {
+    setShowMedia(true);
+    setPlayClicked(true);
+    setTimeout(() => {
+      videoRef.current?.play().catch(() => {});
+    }, 0);
+  };
+
+  const closeMedia = () => {
+    setShowMedia(false);
+    videoRef.current?.pause();
+  };
+
   return (
     <div className="celebration-page">
       {/* Floating sparkle emojis background */}
@@ -18,58 +37,46 @@ function CelebrationPage() {
         <div className="celebration-glass-card">
           <div className="celebration-ornament-top">
             <span className="celebration-ornament-line" />
-            <span>🌈</span>
+            <span></span>
             <span className="celebration-ornament-line" />
           </div>
 
-          <div className="celebration-icon-row">
-            <span className="celebration-icon">🎂</span>
-            <span className="celebration-icon">🎁</span>
-            <span className="celebration-icon">🎈</span>
-          </div>
-
-          <h1 className="celebration-heading">Your Wish Has Been Made! 🕯️</h1>
-
-          <p className="celebration-message">
-            The candle has been blown out, and your birthday wish is now on its way
-            to the stars. May everything you wished for come true this year and always!
-          </p>
+          <h1 className="celebration-heading">ကလေးလေးအတွက် ကိုကို သီချင်းလေးပြင်ထားပါတယ်။</h1>
 
           <div className="celebration-divider" />
-
-          <p className="celebration-blessing">
-            Happy Birthday! 🎉🥳
-          </p>
-
-          <p className="celebration-tagline">
-            May this year bring you endless joy, love, and unforgettable memories.
-          </p>
-
-          <div className="celebration-ornament-bottom">
-            <span className="celebration-ornament-line" />
-            <span>💖</span>
-            <span className="celebration-ornament-line" />
-          </div>
-        </div>
-
-        {/* Firework-like confetti burst */}
-        <div className="celebration-burst-container">
-          {Array.from({ length: 40 }).map((_, i) => (
-            <div
-              key={i}
-              className="celebration-burst-particle"
-              style={{
-                '--dx': `${Math.cos((i / 40) * Math.PI * 2) * 160}px`,
-                '--dy': `${Math.sin((i / 40) * Math.PI * 2) * 160}px`,
-                '--delay': `${Math.random() * 0.5}s`,
-                '--hue': `${Math.random() * 360}`,
-                width: `${6 + Math.random() * 8}px`,
-                height: `${6 + Math.random() * 8}px`,
-              } as React.CSSProperties}
-            />
-          ))}
+          {!playClicked && (
+            <button
+              className="celebration-play-btn"
+              type="button"
+              onClick={handlePlayButton}
+            >
+              Play Video
+            </button>
+          )}
         </div>
       </div>
+
+      {showMedia && (
+        <div className="celebration-video-overlay" onClick={closeMedia}>
+          <div className="celebration-video-card popup" onClick={(e) => e.stopPropagation()}>
+            <button className="celebration-video-close" type="button" onClick={closeMedia}>
+              ×
+            </button>
+            <video
+              ref={videoRef}
+              className="celebration-video-player"
+              controls
+              autoPlay
+              preload="metadata"
+              poster="/video-poster.jpg"
+              playsInline
+            >
+              <source src="/stickers/mmm.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

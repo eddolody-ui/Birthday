@@ -1,20 +1,25 @@
-import { useState, useRef, useCallback } from 'react';
+import { useState, useRef, useCallback, useMemo } from 'react';
+import StickerBox from './StickerBox';
 
 interface BirthdayCakeProps {
   onCandleBlown?: () => void;
 }
 
 function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
+  const centerCakePosition = { x: 0, y: 0 };
+  const centerCandlePosition = { x: 0, y: -130 };
+  const dropSnapDistance = 120;
+
   // === Cake drag state ===
   const [isDragging, setIsDragging] = useState(false);
-  const [cakePosition, setCakePosition] = useState({ x: 0, y: 0 });
+  const [cakePosition, setCakePosition] = useState({ x: 170, y: 30 });
   const cakeDragStart = useRef({ x: 0, y: 0 });
   const cakePosStart = useRef({ x: 0, y: 0 });
   const cakeRef = useRef<HTMLDivElement>(null);
 
   // === Candle drag state ===
   const [isCandleDragging, setIsCandleDragging] = useState(false);
-  const [candlePosition, setCandlePosition] = useState({ x: 0, y: -120 });
+  const [candlePosition, setCandlePosition] = useState({ x: 210, y: -80 });
   const candleDragStart = useRef({ x: 0, y: 0 });
   const candlePosStart = useRef({ x: 0, y: 0 });
   const candleRef = useRef<HTMLDivElement>(null);
@@ -24,17 +29,25 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
   const [showSmoke, setShowSmoke] = useState(false);
 
   // === Instruction progress tracking ===
-  const [hasDraggedCake, setHasDraggedCake] = useState(false);
   const [hasDraggedCandle, setHasDraggedCandle] = useState(false);
 
   // Derive current instruction text from progress
-  const currentInstruction = !hasDraggedCake
-    ? '✨ Drag the cake to move it around'
-    : !hasDraggedCandle
-    ? '🕯️ Now drag the candle onto the cake'
+  const currentInstruction = !hasDraggedCandle
+    ? 'ချစ်ဆုံးလေး Candle လေးကို Cake ပေါ်တင်လိုက်နော်။'
     : !isLit
-    ? '🔥 Click the candle to light it!'
-    : '💨 Click the candle to blow it out';
+    ? ''
+    : 'Candle လေးကို ထပ်နှိပ်ပြီး ချစ်ဆုံးလေး မီးမှုတ်လို့ရပါပြီ။';
+
+  // Sticker mapping based on instruction step
+  const stickerConfig = useMemo(() => {
+    if (!hasDraggedCandle) {
+      return { src: '/stickers/cat-smile.webp', label: ' DRAG CANDLE' };
+    } else if (!isLit) {
+      return { src: '/stickers/cat-cute.webp', label: ' LIGHT IT!' };
+    } else {
+      return { src: '/stickers/cat-party.webp', label: ' BLOW OUT' };
+    }
+  }, [hasDraggedCandle, isLit]);
 
   // -- Cake pointer handlers --
   const handleCakePointerDown = useCallback((e: React.PointerEvent) => {
@@ -55,18 +68,18 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
       x: cakePosStart.current.x + dx,
       y: cakePosStart.current.y + dy,
     });
-    // Mark cake as dragged on first movement
-    if (!hasDraggedCake) {
-      setHasDraggedCake(true);
-    }
-  }, [isDragging, hasDraggedCake]);
+  }, [isDragging]);
 
   const handleCakePointerUp = useCallback((e: React.PointerEvent) => {
     setIsDragging(false);
     if (cakeRef.current) {
       cakeRef.current.releasePointerCapture(e.pointerId);
     }
-  }, []);
+
+    if (Math.hypot(cakePosition.x - centerCakePosition.x, cakePosition.y - centerCakePosition.y) < dropSnapDistance) {
+      setCakePosition(centerCakePosition);
+    }
+  }, [cakePosition]);
 
   const moveCake = useCallback((dx: number, dy: number) => {
     setCakePosition((prev) => ({ x: prev.x + dx, y: prev.y + dy }));
@@ -127,7 +140,11 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
     if (candleRef.current) {
       candleRef.current.releasePointerCapture(e.pointerId);
     }
-  }, []);
+
+    if (Math.hypot(candlePosition.x - centerCandlePosition.x, candlePosition.y - centerCandlePosition.y) < dropSnapDistance) {
+      setCandlePosition(centerCandlePosition);
+    }
+  }, [candlePosition]);
 
   // -- Click candle to toggle flame --
   const handleCandleClick = (e: React.MouseEvent) => {
@@ -147,6 +164,8 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
   };
 
   // Init: candle starts unlit, no smoke on mount
+
+  const isDraggingAny = isDragging || isCandleDragging;
 
   return (
     <>
@@ -224,7 +243,6 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
         {/* Cake drag indicator */}
         {isDragging && (
           <div className="cake-drag-hint">
-            <span>📍</span>
           </div>
         )}
         </div>
@@ -282,13 +300,6 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
         <div className={`candle-hint ${isLit ? 'hint-lit' : 'hint-unlit'}`}>
           {isLit ? '💨' : '🕯️'}
         </div>
-
-        {/* Drag hint when dragging */}
-        {isCandleDragging && (
-          <div className="candle-drag-hint">
-            <span>✋</span>
-          </div>
-        )}
       </div>
 
       {/* ========== GLASS INSTRUCTION BOX (dynamic next step) ========== */}
