@@ -4,8 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "vite",
-    "build": "tsc && node ./node_modules/vite/dist/node/cli.js build",
-    "preview": "node ./node_modules/vite/dist/node/cli.js preview"
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@base-ui/react": "^1.6.0",
