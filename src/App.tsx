@@ -54,7 +54,7 @@ function App() {
   return (
     <div className={`App ${isFadingOut ? 'page-fade-out' : ''}`}>
       {page === 'countdown' && (
-        <Countdown targetDate={new Date('2026-07-27T00:00:00')} onEnter={handleEnter} />
+        <Countdown targetDate={new Date('2026-09-29T00:00:00')} onEnter={handleEnter} />
       )}
       {page === 'loading' && (
         <LoadingAnimation onComplete={handleLoadingComplete} />
