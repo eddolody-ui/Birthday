@@ -6,7 +6,7 @@ interface DecoratedTextPageProps {
 }
 
 const birthdayMessage = [
-  { text: 'ပျော်ရှင်စရာမွေးနေ့လေးပါ', className: 'deco-title' },
+  { text: 'ပျော်ရွှင်စရာမွေးနေ့လေးပါ', className: 'deco-title' },
   { text: ' ကိုကို့ ကလေးလေး', className: 'deco-title' },
   { text: 'From', className: 'deco-subtitle' },
   { text: 'ကိုကို', className: 'deco-subtitle' },
@@ -83,29 +83,35 @@ function DecoratedTextPage({ onContinue }: DecoratedTextPageProps) {
       </div>
 
       {/* Photo glass containers */}
-      <div className="deco-photo-gallery" aria-hidden>
+      <div className="deco-photo-gallery">
         <div className="deco-photo-frame top-left">
-          <div className="deco-photo-surface">📸 Photo</div>
+          <div className="deco-photo-surface">
+            <img src="/photos/photo_2026-07-27_10-25-58.jpg" alt="Birthday memory" className="deco-photo-img" />
+          </div>
         </div>
         <div className="deco-photo-frame top-right">
-          <div className="deco-photo-surface">📸 Photo</div>
+            <img src="/photos/photo_2026-07-27_10-25-44.jpg" alt="Birthday memory" className="deco-photo-img" />
         </div>
         <div className="deco-photo-frame mid-left">
-          <div className="deco-photo-surface">📸 Photo</div>
+            <img src="/photos/photo_2026-07-27_10-26-01.jpg" alt="Birthday memory" className="deco-photo-img" />
         </div>
         <div className="deco-photo-frame mid-right">
-          <div className="deco-photo-surface">📸 Photo</div>
+            <img src="/photos/photo_2026-07-27_10-25-53.jpg" alt="Birthday memory" className="deco-photo-img" />
         </div>
         <div className="deco-photo-frame bottom-left">
-          <div className="deco-photo-surface">📸 Photo</div>
+          <div className="deco-photo-surface">
+            <img src="/photos/photo_2026-07-27_10-26-08.jpg" alt="Birthday memory" className="deco-photo-img" />
+          </div>
         </div>
         <div className="deco-photo-frame bottom-right">
-          <div className="deco-photo-surface">📸 Photo</div>
+          <div className="deco-photo-surface">
+            <img src="/photos/photo_2026-07-27_10-26-04.jpg" alt="Birthday memory" className="deco-photo-img" />
+          </div>
         </div>
       </div>
 
       {/* Center glass card */}
-      <div className="deco-center-wrapper">
+      <div className="deco-center-wrapper"> 
         <div className="deco-glass-card">
           {/* Top ornament */}
           <div className="deco-ornament-top" aria-hidden>

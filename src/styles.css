@@ -256,8 +256,18 @@ html, body, #root {
 .countdown-timer {
   display: flex;
   align-items: center;
-  gap: 50px;
+  gap: 14px;
   padding: 16px 0;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.countdown-block {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 .countdown-unit {
@@ -278,6 +288,7 @@ html, body, #root {
   line-height: 1;
   min-width: 80px;
   text-align: center;
+  white-space: nowrap;
 }
 
 .countdown-label {
@@ -292,8 +303,9 @@ html, body, #root {
   font-size: 48px;
   font-weight: 300;
   color: rgba(166, 200, 255, 0.5);
-  margin-bottom: 24px;
+  margin-bottom: 0;
   animation: pulse 2s ease-in-out infinite;
+  white-space: nowrap;
 }
 
 @keyframes pulse {
@@ -359,20 +371,16 @@ html, body, #root {
   }
 
   .countdown-timer {
-    gap: 24px;
+    gap: 10px;
     flex-wrap: wrap;
     justify-content: center;
     padding: 12px 0;
   }
 
-  .countdown-glass-box {
-    min-width: auto;
-    padding: 14px 16px;
-  }
 
   .countdown-number {
     font-size: clamp(2.5rem, 7vw, 4rem);
-    min-width: 60px;
+    min-width: 50px;
   }
 
   .countdown-sep {
@@ -409,16 +417,12 @@ html, body, #root {
   }
 
   .countdown-timer {
-    gap: 16px;
-  }
-
-  .countdown-glass-box {
-    padding: 12px 14px;
+    gap: 10px;
   }
 
   .countdown-number {
     font-size: clamp(2.2rem, 10vw, 3rem);
-    min-width: 54px;
+    min-width: 30px;
   }
 
   .countdown-sep {
@@ -2550,11 +2554,9 @@ html, body, #root {
   width: fit-content;
   height: fit-content;
   padding: 6px;
-  background:white;
   border: black;
   backdrop-filter: blur(18px);
   -webkit-backdrop-filter: blur(18px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35), 0 0 20px rgba(255, 55, 105, 0.15);
   overflow: hidden;
   display: flex;
   align-items: center;
@@ -2562,26 +2564,17 @@ html, body, #root {
   animation: decoPhotoPop 0.8s ease-out both;
 }
 
-.deco-photo-frame .deco-photo-surface {
-  width: fit-content;
-  height: fit-content;
-  border-radius: 10px;
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.04));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: rgba(255, 255, 255, 0.74);
-  font-size: 12px;
-  text-align: center;
-  padding: 8px;
-  line-height: 1.2;
+.deco-photo-img {
+  display: block;
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  border-radius: 14px;
 }
 
 .deco-photo-frame:hover {
   transform: translateY(-4px) scale(1.04);
   box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45), 0 0 24px rgba(255, 55, 105, 0.3);
-  border-color: rgba(255, 255, 255, 0.35);
 }
 
 .deco-photo-frame.top-left { top: 12%; left: 10%; }

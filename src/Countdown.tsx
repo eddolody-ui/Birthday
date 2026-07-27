@@ -26,31 +26,39 @@ function CountdownTimer({ targetDate }: { targetDate: Date }) {
 
   return (
     <div className="countdown-timer">
-      <div className="countdown-glass-box">
-        <div className="countdown-unit">
-          <span className="countdown-number">{String(time.days).padStart(2, '0')}</span>
-          <span className="countdown-label">Days</span>
+      <div className="countdown-block">
+        <div className="countdown-glass-box">
+          <div className="countdown-unit">
+            <span className="countdown-number">{String(time.days).padStart(2, '0')}</span>
+            <span className="countdown-label">Days</span>
+          </div>
         </div>
+        <span className="countdown-sep">:</span>
       </div>
-      <span className="countdown-sep">:</span>
-      <div className="countdown-glass-box">
-        <div className="countdown-unit">
-          <span className="countdown-number">{String(time.hours).padStart(2, '0')}</span>
-          <span className="countdown-label">Hours</span>
+      <div className="countdown-block">
+        <div className="countdown-glass-box">
+          <div className="countdown-unit">
+            <span className="countdown-number">{String(time.hours).padStart(2, '0')}</span>
+            <span className="countdown-label">Hours</span>
+          </div>
         </div>
+        <span className="countdown-sep">:</span>
       </div>
-      <span className="countdown-sep">:</span>
-      <div className="countdown-glass-box">
-        <div className="countdown-unit">
-          <span className="countdown-number">{String(time.minutes).padStart(2, '0')}</span>
-          <span className="countdown-label">Minutes</span>
+      <div className="countdown-block">
+        <div className="countdown-glass-box">
+          <div className="countdown-unit">
+            <span className="countdown-number">{String(time.minutes).padStart(2, '0')}</span>
+            <span className="countdown-label">Minutes</span>
+          </div>
         </div>
+        <span className="countdown-sep">:</span>
       </div>
-      <span className="countdown-sep">:</span>
-      <div className="countdown-glass-box">
-        <div className="countdown-unit">
-          <span className="countdown-number">{String(time.seconds).padStart(2, '0')}</span>
-          <span className="countdown-label">Seconds</span>
+      <div className="countdown-block">
+        <div className="countdown-glass-box">
+          <div className="countdown-unit">
+            <span className="countdown-number">{String(time.seconds).padStart(2, '0')}</span>
+            <span className="countdown-label">Seconds</span>
+          </div>
         </div>
       </div>
     </div>
