@@ -15,6 +15,39 @@ const birthdayMessage = [
   { text: 'ကိုကို့ ကိုလဲအများကြီးပိုချစ်ပေးနိုင်ပါစေ။', className: 'deco-line' },
 ];
 
+const romancePhotos = [
+  {
+    src: 'https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?auto=format&fit=crop&w=500&q=80',
+    alt: 'A couple sharing a quiet moment',
+    position: 'top-left',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80',
+    alt: 'A couple walking together',
+    position: 'top-right',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1529636798458-92182e662485?auto=format&fit=crop&w=500&q=80',
+    alt: 'A romantic couple outdoors',
+    position: 'mid-left',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=500&q=80',
+    alt: 'A couple celebrating their love',
+    position: 'mid-right',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1523438885200-e635ba2c371e?auto=format&fit=crop&w=500&q=80',
+    alt: 'A romantic wedding moment',
+    position: 'bottom-left',
+  },
+  {
+    src: 'https://images.unsplash.com/photo-1511988617509-a57c8a288659?auto=format&fit=crop&w=500&q=80',
+    alt: 'A couple enjoying time together',
+    position: 'bottom-right',
+  },
+];
+
 function DecoratedTextPage({ onContinue }: DecoratedTextPageProps) {
   const [visibleLines, setVisibleLines] = useState<number[]>([]);
   const [canContinue, setCanContinue] = useState(false);
@@ -84,24 +117,11 @@ function DecoratedTextPage({ onContinue }: DecoratedTextPageProps) {
 
       {/* Photo glass containers */}
       <div className="deco-photo-gallery" aria-hidden>
-        <div className="deco-photo-frame top-left">
-          <div className="deco-photo-surface">📸 Photo</div>
-        </div>
-        <div className="deco-photo-frame top-right">
-          <div className="deco-photo-surface">📸 Photo</div>
-        </div>
-        <div className="deco-photo-frame mid-left">
-          <div className="deco-photo-surface">📸 Photo</div>
-        </div>
-        <div className="deco-photo-frame mid-right">
-          <div className="deco-photo-surface">📸 Photo</div>
-        </div>
-        <div className="deco-photo-frame bottom-left">
-          <div className="deco-photo-surface">📸 Photo</div>
-        </div>
-        <div className="deco-photo-frame bottom-right">
-          <div className="deco-photo-surface">📸 Photo</div>
-        </div>
+        {romancePhotos.map((photo) => (
+          <div className={`deco-photo-frame ${photo.position}`} key={photo.src}>
+            <img className="deco-photo-image" src={photo.src} alt={photo.alt} />
+          </div>
+        ))}
       </div>
 
       {/* Center glass card */}
@@ -145,4 +165,3 @@ function DecoratedTextPage({ onContinue }: DecoratedTextPageProps) {
 }
 
 export default DecoratedTextPage;
-

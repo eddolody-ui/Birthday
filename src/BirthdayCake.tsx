@@ -12,14 +12,18 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
 
   // === Cake drag state ===
   const [isDragging, setIsDragging] = useState(false);
-  const [cakePosition, setCakePosition] = useState({ x: 170, y: 30 });
+  const [cakePosition, setCakePosition] = useState(() => (
+    window.innerWidth <= 768 ? { x: 0, y: -40 } : { x: 170, y: 30 }
+  ));
   const cakeDragStart = useRef({ x: 0, y: 0 });
   const cakePosStart = useRef({ x: 0, y: 0 });
   const cakeRef = useRef<HTMLDivElement>(null);
 
   // === Candle drag state ===
   const [isCandleDragging, setIsCandleDragging] = useState(false);
-  const [candlePosition, setCandlePosition] = useState({ x: 210, y: -80 });
+  const [candlePosition, setCandlePosition] = useState(() => (
+    window.innerWidth <= 768 ? { x: 90, y: -80 } : { x: 210, y: -80 }
+  ));
   const candleDragStart = useRef({ x: 0, y: 0 });
   const candlePosStart = useRef({ x: 0, y: 0 });
   const candleRef = useRef<HTMLDivElement>(null);
@@ -311,4 +315,3 @@ function BirthdayCake({ onCandleBlown }: BirthdayCakeProps) {
 }
 
 export default BirthdayCake;
-

@@ -105,7 +105,7 @@ function LoadingAnimation({ onComplete }: LoadingAnimationProps) {
               fill="url(#loadingGradient)"
               className="loading-sparkle-emoji"
             >
-              May
+              Nge Nge
             </text>
             <defs>
               <linearGradient id="loadingGradient" x1="0%" y1="0%" x2="100%" y2="100%">
