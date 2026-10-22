@@ -6,7 +6,7 @@ interface DecoratedTextPageProps {
 }
 
 const birthdayMessage = [
-  { text: 'ပျော်ရှင်စရာမွေးနေ့လေးပါ', className: 'deco-title' },
+  { text: 'ပျော်ရွှင်စရာမွေးနေ့လေးပါ', className: 'deco-title' },
   { text: ' ကိုကို့ ကလေးလေး', className: 'deco-title' },
   { text: 'From', className: 'deco-subtitle' },
   { text: 'ကိုကို', className: 'deco-subtitle' },
@@ -125,7 +125,7 @@ function DecoratedTextPage({ onContinue }: DecoratedTextPageProps) {
       </div>
 
       {/* Center glass card */}
-      <div className="deco-center-wrapper">
+      <div className="deco-center-wrapper"> 
         <div className="deco-glass-card">
           {/* Top ornament */}
           <div className="deco-ornament-top" aria-hidden>
